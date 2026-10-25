@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tasks | Taskora AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="app">
+
+    <aside class="side">
+        <a class="logo" href="index.html">Taskora AI</a>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a class="active" href="tasks.html">Tasks</a>
+            <a href="planner.html">Planner</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+        <a class="out" href="login.html">Log out</a>
+    </aside>
+
+    <main class="panel">
+        <h1>Tasks</h1>
+
+        <form class="addbar" action="#">
+            <input type="text" placeholder="Add a task, e.g. Pay rent on Friday" aria-label="New task">
+            <select aria-label="Priority">
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+            <button class="btn" type="submit">Add task</button>
+        </form>
+
+        <section class="box">
+            <h2>All tasks</h2>
+            <ul class="tasks">
+                <li class="task">
+                    <input type="checkbox" id="t1">
+                    <label for="t1">Finish project proposal</label>
+                    <span class="meta">Today</span>
+                    <span class="tag high">high</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="t2">
+                    <label for="t2">Prepare weekly report</label>
+                    <span class="meta">Tomorrow</span>
+                    <span class="tag medium">medium</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="t3">
+                    <label for="t3">Buy groceries</label>
+                    <span class="meta">Saturday</span>
+                    <span class="tag low">low</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="t4">
+                    <label for="t4">Renew passport</label>
+                    <span class="meta">Next week</span>
+                    <span class="tag high">high</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="t5" checked>
+                    <label for="t5">Clean inbox</label>
+                    <span class="meta">Done</span>
+                    <span class="tag low">low</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+
+</html>

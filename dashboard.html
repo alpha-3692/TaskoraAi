@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | Taskora AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="app">
+
+    <aside class="side">
+        <a class="logo" href="index.html">Taskora AI</a>
+        <nav>
+            <a class="active" href="dashboard.html">Dashboard</a>
+            <a href="tasks.html">Tasks</a>
+            <a href="planner.html">Planner</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+        <a class="out" href="login.html">Log out</a>
+    </aside>
+
+    <main class="panel">
+        <h1>Dashboard</h1>
+
+        <div class="stats">
+            <div class="stat"><b class="count" style="--n:8"></b>Due today</div>
+            <div class="stat"><b class="count" style="--n:21"></b>In progress</div>
+            <div class="stat"><b class="count" style="--n:46"></b>Done this month</div>
+        </div>
+
+        <section class="box">
+            <h2>Today's focus</h2>
+            <ul class="tasks">
+                <li class="task">
+                    <input type="checkbox" id="d1">
+                    <label for="d1">Finish project proposal</label>
+                    <span class="meta">10:00 AM</span>
+                    <span class="tag high">high</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="d2">
+                    <label for="d2">Reply to client emails</label>
+                    <span class="meta">1:00 PM</span>
+                    <span class="tag medium">medium</span>
+                </li>
+                <li class="task">
+                    <input type="checkbox" id="d3" checked>
+                    <label for="d3">Book dentist</label>
+                    <span class="meta">Anytime</span>
+                    <span class="tag low">low</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+
+</html>

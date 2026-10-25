@@ -1,0 +1,268 @@
+/* ============================================
+   Taskora AI - animations
+   Remove the <link> to this file to turn them all off.
+   ============================================ */
+
+/* Smooth fade between pages (Chrome, Edge, Safari) */
+@view-transition { navigation: auto; }
+
+/* ---------- Shared keyframes ---------- */
+@keyframes rise {
+  from { opacity: 0; translate: 0 24px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+@keyframes reveal {
+  from { opacity: 0; translate: 0 40px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* ---------- Buttons: lift + light sweep ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  translate: -120% 0;
+  transition: translate 0.6s ease;
+}
+
+.btn:hover::after { translate: 120% 0; }
+.btn.ghost::after { display: none; }
+.btn:active { transform: translateY(0) scale(0.98); }
+
+/* ---------- Logo badge tilts on hover ---------- */
+.logo::before { transition: transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.logo:hover::before { transform: rotate(-12deg) scale(1.1); }
+
+/* ---------- Navbar and form polish ---------- */
+.nav nav a { transition: background 0.2s, color 0.2s; }
+
+.form input,
+.form textarea,
+.addbar input,
+.addbar select { transition: border-color 0.2s, box-shadow 0.2s; }
+
+/* ---------- Cards lift on hover ---------- */
+.card,
+.stat {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover,
+.stat:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(15, 21, 53, 0.14);
+  border-color: #cfd5ee;
+}
+
+.featured:hover { transform: translateY(-16px); }
+
+/* ============================================
+   HOME PAGE HERO
+   ============================================ */
+.hero { position: relative; isolation: isolate; }
+
+/* Soft glow behind the hero that drifts slowly */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: 0;
+  width: 520px;
+  height: 520px;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(79, 70, 229, 0.2), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(255, 107, 74, 0.18), transparent 55%);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  to { translate: -50px 40px; scale: 1.15; }
+}
+
+/* Text slides in one piece after another */
+.hero > div:first-child > * { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero > div:first-child > :nth-child(1) { animation-delay: 0.05s; }
+.hero > div:first-child > :nth-child(2) { animation-delay: 0.18s; }
+.hero > div:first-child > :nth-child(3) { animation-delay: 0.3s; }
+.hero > div:first-child > :nth-child(4) { animation-delay: 0.38s; }
+.hero > div:first-child > :nth-child(5) { animation-delay: 0.5s; }
+
+/* Preview card: enters tilted, then floats forever */
+.mock {
+  animation:
+    mockIn 0.9s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    float 6s 1.2s ease-in-out infinite;
+}
+
+@keyframes mockIn {
+  from { opacity: 0; transform: translateY(40px) rotate(4deg) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) rotate(1.5deg) scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(1.5deg); }
+  50%      { transform: translateY(-14px) rotate(1.5deg); }
+}
+
+/* Task rows inside the preview appear one by one */
+.mrow { animation: rise 0.6s ease both; }
+.mrow:nth-of-type(1) { animation-delay: 0.7s; }
+.mrow:nth-of-type(2) { animation-delay: 0.82s; }
+.mrow:nth-of-type(3) { animation-delay: 0.94s; }
+.mrow:nth-of-type(4) { animation-delay: 1.06s; }
+
+/* Progress bar fills up */
+.progress span { animation: fill 1.4s 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes fill { from { width: 0; } }
+
+/* Coral badge pops in, then bobs */
+.badge {
+  animation:
+    badgeIn 0.6s 1.4s cubic-bezier(0.3, 1.6, 0.5, 1) both,
+    badgeBob 5s 2.1s ease-in-out infinite;
+}
+
+@keyframes badgeIn {
+  from { opacity: 0; transform: translateY(10px) rotate(-3deg) scale(0.6); }
+  to   { opacity: 1; transform: translateY(0) rotate(-3deg) scale(1); }
+}
+
+@keyframes badgeBob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-6px) rotate(-3deg); }
+}
+
+/* ============================================
+   SCROLL REVEAL (public pages)
+   Works in Chrome, Edge and Safari 26+. Other browsers
+   simply show the content without the animation.
+   ============================================ */
+@supports (animation-timeline: view()) {
+  .section h1,
+  .section h2,
+  .section .lead,
+  .section .card,
+  .cta {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  /* Cards in a row arrive slightly one after another */
+  .grid .card:nth-child(2),
+  .steps .card:nth-child(2) { animation-range: entry 8% entry 48%; }
+  .grid .card:nth-child(3),
+  .steps .card:nth-child(3) { animation-range: entry 16% entry 56%; }
+}
+
+/* ============================================
+   LOGIN AND SIGNUP
+   ============================================ */
+.auth-page .logo { animation: rise 0.6s ease both; }
+.auth-card { animation: rise 0.8s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* ============================================
+   APP PAGES (dashboard, tasks, planner, ...)
+   ============================================ */
+
+/* Page content rises in, one block after another */
+.panel > :not(.stats) { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.panel > :nth-child(2) { animation-delay: 0.08s; }
+.panel > :nth-child(3) { animation-delay: 0.16s; }
+
+.stat { animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.stat:nth-child(1) { animation-delay: 0.1s; }
+.stat:nth-child(2) { animation-delay: 0.2s; }
+.stat:nth-child(3) { animation-delay: 0.3s; }
+
+/* Task rows stagger in */
+.tasks .task { animation: rise 0.5s ease both; }
+.tasks .task:nth-child(1) { animation-delay: 0.25s; }
+.tasks .task:nth-child(2) { animation-delay: 0.31s; }
+.tasks .task:nth-child(3) { animation-delay: 0.37s; }
+.tasks .task:nth-child(4) { animation-delay: 0.43s; }
+.tasks .task:nth-child(5) { animation-delay: 0.49s; }
+.tasks .task:nth-child(6) { animation-delay: 0.55s; }
+
+/* Sidebar links nudge right on hover */
+.side nav a,
+.side .out { transition: background 0.2s, color 0.2s, transform 0.2s; }
+.side nav a:hover,
+.side .out:hover { transform: translateX(4px); }
+
+/* Ticking a task: box pops, line draws across the text */
+.task label {
+  flex: 0 1 auto;
+  margin-right: auto;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0 2px;
+  transition: background-size 0.35s ease, color 0.25s ease;
+}
+
+.task input:checked + label {
+  text-decoration: none;
+  background-size: 100% 2px;
+  color: var(--muted);
+}
+
+.task input:checked { animation: pop 0.3s ease; }
+
+@keyframes pop {
+  50% { transform: scale(1.35); }
+}
+
+/* Stat numbers count up (needs the small HTML edit in Step 3) */
+@property --n {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.count {
+  counter-reset: num var(--n);
+  animation: count 1.4s 0.25s ease-out both;
+}
+
+.count::after { content: counter(num); }
+
+@keyframes count { from { --n: 0; } }
+
+/* ---------- Calendar ---------- */
+.day { transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+
+.day:not(.empty):hover {
+  transform: translateY(-3px);
+  border-color: var(--brand);
+  box-shadow: 0 8px 18px rgba(15, 21, 53, 0.1);
+}
+
+/* Today gently pulses */
+.day.today { animation: ring 2.4s ease-out infinite; }
+
+@keyframes ring {
+  0%   { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.5); }
+  70%  { box-shadow: 0 0 0 12px rgba(79, 70, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+/* ============================================
+   Respect people who turn off motion in their system settings
+   ============================================ */
+@media (max-width: 900px) {
+  .featured:hover { transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

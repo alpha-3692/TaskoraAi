@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings | Taskora AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="app">
+
+    <aside class="side">
+        <a class="logo" href="index.html">Taskora AI</a>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="tasks.html">Tasks</a>
+            <a href="planner.html">Planner</a>
+            <a href="calendar.html">Calendar</a>
+            <a class="active" href="settings.html">Settings</a>
+        </nav>
+        <a class="out" href="login.html">Log out</a>
+    </aside>
+
+    <main class="panel">
+        <h1>Settings</h1>
+
+        <section class="box">
+            <h2>Profile</h2>
+
+            <form class="form" action="#">
+                <label for="name">Name</label>
+                <input id="name" type="text" value="Your Name">
+
+                <label for="email">Email</label>
+                <input id="email" type="email" value="you@example.com">
+
+                <label class="check">
+                    <input type="checkbox" checked> Email me a daily summary
+                </label>
+
+                <label class="check">
+                    <input type="checkbox"> Remind me 1 hour before due time
+                </label>
+
+                <button class="btn" type="submit">Save changes</button>
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>
